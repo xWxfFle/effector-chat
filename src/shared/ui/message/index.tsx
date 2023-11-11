@@ -1,4 +1,4 @@
-import { Paper, Text } from '@mantine/core'
+import { Paper, Text, useMantineTheme } from '@mantine/core'
 
 interface Props {
   title: string
@@ -6,9 +6,11 @@ interface Props {
 }
 
 export const Message = ({ title, body }: Props) => {
+  const theme = useMantineTheme()
+
   return (
-    <Paper shadow="xs" radius="xl" p="md">
-      <Text fw={500} size="sm" c="blue">
+    <Paper shadow="xs" radius="xl" p="xs" pl="md">
+      <Text fw={500} size="sm" c={theme.primaryColor}>
         {title}
       </Text>
       <Text>{body}</Text>

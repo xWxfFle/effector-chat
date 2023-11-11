@@ -1,3 +1,16 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 .root {
   position: relative;
 }
@@ -9,7 +22,10 @@
   left: var(--mantine-spacing-sm);
   pointer-events: none;
   color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-3));
-  transition: transform 150ms ease, font-size 150ms ease, color 150ms ease;
+  transition:
+    transform 150ms ease,
+    font-size 150ms ease,
+    color 150ms ease;
 
   &[data-floating] {
     transform: translate(calc(var(--mantine-spacing-sm) * -1), rem(-28px));
