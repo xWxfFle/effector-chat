@@ -1,4 +1,3 @@
-import './index.css'
 import { appStarted } from '@shared/config/init'
 import ReactDOM from 'react-dom/client'
 import { App } from './application'

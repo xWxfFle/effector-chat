@@ -9,7 +9,13 @@ export const Message = ({ title, body }: Props) => {
   const theme = useMantineTheme()
 
   return (
-    <Paper shadow="xs" radius="xl" p="xs" pl="md">
+    <Paper
+      shadow="xs"
+      radius="xl"
+      p="xs"
+      pl="md"
+      style={{ wordBreak: 'break-word' }}
+    >
       <Text fw={500} size="sm" c={theme.primaryColor}>
         {title}
       </Text>

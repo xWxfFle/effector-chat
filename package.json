@@ -15,6 +15,7 @@
     "@mantine/hooks": "^7.1.5",
     "@tabler/icons-react": "^2.39.0",
     "effector": "^22.8.7",
+    "effector-localstorage": "^1.0.0",
     "effector-react": "^22.5.4",
     "patronum": "^1.20.0",
     "react": "^18.2.0",

@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.2.14"],\
             ["@vitejs/plugin-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:4.1.0"],\
             ["effector", "npm:22.8.7"],\
+            ["effector-localstorage", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:1.0.0"],\
             ["effector-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:22.5.4"],\
             ["eslint", "npm:8.52.0"],\
             ["eslint-import-resolver-node", "npm:0.3.9"],\
@@ -2247,6 +2248,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.2.14"],\
             ["@vitejs/plugin-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:4.1.0"],\
             ["effector", "npm:22.8.7"],\
+            ["effector-localstorage", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:1.0.0"],\
             ["effector-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:22.5.4"],\
             ["eslint", "npm:8.52.0"],\
             ["eslint-import-resolver-node", "npm:0.3.9"],\
@@ -2474,6 +2476,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/effector-npm-22.8.7-95c01c2f71-8a6f07091e.zip/node_modules/effector/",\
           "packageDependencies": [\
             ["effector", "npm:22.8.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["effector-localstorage", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/effector-localstorage-npm-1.0.0-c683b924fa-cba7f01451.zip/node_modules/effector-localstorage/",\
+          "packageDependencies": [\
+            ["effector-localstorage", "npm:1.0.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:1.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/effector-localstorage-virtual-27a8d2b7c3/0/cache/effector-localstorage-npm-1.0.0-c683b924fa-cba7f01451.zip/node_modules/effector-localstorage/",\
+          "packageDependencies": [\
+            ["effector-localstorage", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:1.0.0"],\
+            ["@types/effector", null],\
+            ["effector", "npm:22.8.7"]\
+          ],\
+          "packagePeers": [\
+            "@types/effector",\
+            "effector"\
           ],\
           "linkType": "HARD"\
         }]\
