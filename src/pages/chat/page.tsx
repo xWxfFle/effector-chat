@@ -2,7 +2,7 @@ import {
   ActionIcon,
   AppShell,
   Button,
-  Container,
+  Input,
   Paper,
   rem,
   Stack,
@@ -14,7 +14,7 @@ import {
 import { Message } from '@shared/ui'
 import { IconArrowRight, IconLogout } from '@tabler/icons-react'
 import { useUnit } from 'effector-react'
-import { FormEventHandler, useState } from 'react'
+import { FormEventHandler } from 'react'
 import {
   $message,
   $user,
@@ -25,7 +25,6 @@ import {
   usernameChanged,
   usernameFormSubmitted,
 } from './model'
-import styles from './styles.module.css'
 
 const MessageInput = (props: TextInputProps) => {
   const theme = useMantineTheme()
@@ -59,9 +58,7 @@ const MessageInput = (props: TextInputProps) => {
 }
 
 const UsernameInput = () => {
-  const [focused, setFocused] = useState(false)
   const [username, error] = useUnit([$username, $usernameError])
-  const floating = username.trim().length > 0 || focused || undefined
   const onFormSubmit: FormEventHandler = (e) => {
     e.preventDefault()
     usernameFormSubmitted()
@@ -72,6 +69,8 @@ const UsernameInput = () => {
     <Paper
       component="form"
       onSubmit={onFormSubmit}
+      p="sm"
+      w="100%"
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -79,21 +78,18 @@ const UsernameInput = () => {
         gap: 'var(--mantine-spacing-xs)',
       }}
     >
-      <TextInput
-        label="Введите ваше имя"
-        placeholder="Фёдор Двинятин"
+      <Input
+        placeholder="Введите ваше имя"
         required
-        classNames={styles}
+        style={{ flex: 1 }}
         value={username}
         onChange={(event) => usernameChanged(event.currentTarget.value)}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        mt="md"
+        size="md"
         autoComplete="nope"
-        data-floating={floating}
-        labelProps={{ 'data-floating': floating }}
       />
-      <Button type="submit">Сохранить</Button>
+      <Button type="submit" size="md">
+        Сохранить
+      </Button>
     </Paper>
   )
 }
@@ -105,20 +101,22 @@ const Header = () => {
   if (!user) return <UsernameInput />
 
   return (
-    <Container
-      fluid
+    <Paper
+      p="sm"
       style={{
         display: 'flex',
+        flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
+        width: '100%',
         gap: 'var(--mantine-spacing-xs)',
       }}
     >
       <Text size="lg">{user}</Text>
-      <Button leftSection={icon} onClick={() => userLoggedOut()}>
+      <Button leftSection={icon} onClick={() => userLoggedOut()} size="md">
         Выйти
       </Button>
-    </Container>
+    </Paper>
   )
 }
 
@@ -127,7 +125,7 @@ export const Chat = () => {
     <AppShell
       padding="md"
       layout="alt"
-      header={{ height: 77 }}
+      header={{ height: 66 }}
       footer={{ height: 66 }}
       navbar={{ width: 200, breakpoint: 'md', collapsed: { mobile: true } }}
       bg="var(--mantine-color-gray-1)"
@@ -135,9 +133,8 @@ export const Chat = () => {
       <AppShell.Header
         style={{
           display: 'flex',
-          padding: 'var(--mantine-spacing-md)',
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
         }}
       >
         <Header />
