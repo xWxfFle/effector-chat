@@ -11,16 +11,18 @@ import {
   TextInputProps,
   useMantineTheme,
 } from '@mantine/core'
-import { Message } from '@shared/ui'
-import { IconArrowRight, IconKeyboard, IconLogout } from '@tabler/icons-react'
+import { MessageCard } from '@shared/ui'
+import { IconArrowUp, IconKeyboard, IconLogout } from '@tabler/icons-react'
 import { useUnit } from 'effector-react'
 import { FormEventHandler } from 'react'
 import {
   $message,
+  $messages,
   $user,
   $username,
   $usernameError,
   messageChanged,
+  messageFormSubmitted,
   userLoggedOut,
   usernameChanged,
   usernameFormSubmitted,
@@ -29,39 +31,48 @@ import {
 const MessageInput = (props: TextInputProps) => {
   const theme = useMantineTheme()
   const [message, user] = useUnit([$message, $user])
+  const onFormSubmit: FormEventHandler = (e) => {
+    e.preventDefault()
+    messageFormSubmitted()
+  }
 
   return (
-    <TextInput
-      size="md"
-      disabled={!user}
-      value={message}
-      p="sm"
-      onChange={(event) => messageChanged(event.currentTarget.value)}
-      placeholder={
-        user ? 'Написать сообщение...' : 'Введите имя, чтобы начать общение'
-      }
-      leftSection={
-        <IconKeyboard
-          style={{ width: rem(18), height: rem(18) }}
-          stroke={1.5}
-        />
-      }
-      rightSectionWidth={42}
-      rightSection={
-        <ActionIcon
-          size={32}
-          radius="xl"
-          color={theme.primaryColor}
-          variant="filled"
-        >
-          <IconArrowRight
+    <Paper component="form" onSubmit={onFormSubmit} w="100%">
+      <TextInput
+        size="md"
+        disabled={!user}
+        value={message}
+        p="sm"
+        maxLength={1024}
+        onSubmit={onFormSubmit}
+        onChange={(event) => messageChanged(event.currentTarget.value)}
+        placeholder={
+          user ? 'Написать сообщение...' : 'Введите имя, чтобы начать общение'
+        }
+        leftSection={
+          <IconKeyboard
             style={{ width: rem(18), height: rem(18) }}
             stroke={1.5}
           />
-        </ActionIcon>
-      }
-      {...props}
-    />
+        }
+        rightSectionWidth={42}
+        rightSection={
+          <ActionIcon
+            size={32}
+            radius="xl"
+            type="submit"
+            color={theme.primaryColor}
+            variant="filled"
+          >
+            <IconArrowUp
+              style={{ width: rem(18), height: rem(18) }}
+              stroke={1.5}
+            />
+          </ActionIcon>
+        }
+        {...props}
+      />
+    </Paper>
   )
 }
 
@@ -134,6 +145,7 @@ const Header = () => {
 }
 
 export const Chat = () => {
+  const [messages] = useUnit([$messages])
   return (
     <AppShell
       padding="md"
@@ -156,15 +168,13 @@ export const Chat = () => {
       <AppShell.Main style={{ display: 'flex', alignItems: 'flex-end' }}>
         <Stack
           justify="flex-end"
-          maw={700}
           style={{ overflowY: 'auto' }}
           gap="xs"
           py="xs"
         >
-          <Message
-            title="Arseniy"
-            body="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam."
-          />
+          {messages.map((message) => (
+            <MessageCard key={crypto.randomUUID()} message={message} />
+          ))}
         </Stack>
       </AppShell.Main>
       <AppShell.Footer>
