@@ -12,7 +12,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { Message } from '@shared/ui'
-import { IconArrowRight, IconLogout } from '@tabler/icons-react'
+import { IconArrowRight, IconKeyboard, IconLogout } from '@tabler/icons-react'
 import { useUnit } from 'effector-react'
 import { FormEventHandler } from 'react'
 import {
@@ -37,7 +37,15 @@ const MessageInput = (props: TextInputProps) => {
       value={message}
       p="sm"
       onChange={(event) => messageChanged(event.currentTarget.value)}
-      placeholder="Написать сообщение..."
+      placeholder={
+        user ? 'Написать сообщение...' : 'Введите имя, чтобы начать общение'
+      }
+      leftSection={
+        <IconKeyboard
+          style={{ width: rem(18), height: rem(18) }}
+          stroke={1.5}
+        />
+      }
       rightSectionWidth={42}
       rightSection={
         <ActionIcon
@@ -79,7 +87,8 @@ const UsernameInput = () => {
       }}
     >
       <Input
-        placeholder="Введите ваше имя"
+        placeholder="Ваше имя..."
+        maxLength={24}
         required
         style={{ flex: 1 }}
         value={username}
@@ -95,6 +104,8 @@ const UsernameInput = () => {
 }
 
 const Header = () => {
+  const theme = useMantineTheme()
+
   const [user] = useUnit([$user])
   const icon = <IconLogout size={16} />
 
@@ -106,13 +117,15 @@ const Header = () => {
       style={{
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
         gap: 'var(--mantine-spacing-xs)',
       }}
     >
-      <Text size="lg">{user}</Text>
+      <Text size="lg" fw={500} c={theme.primaryColor}>
+        {user}
+      </Text>
       <Button leftSection={icon} onClick={() => userLoggedOut()} size="md">
         Выйти
       </Button>
@@ -127,7 +140,7 @@ export const Chat = () => {
       layout="alt"
       header={{ height: 66 }}
       footer={{ height: 66 }}
-      navbar={{ width: 200, breakpoint: 'md', collapsed: { mobile: true } }}
+      navbar={{ width: 250, breakpoint: 'md', collapsed: { mobile: true } }}
       bg="var(--mantine-color-gray-1)"
     >
       <AppShell.Header
