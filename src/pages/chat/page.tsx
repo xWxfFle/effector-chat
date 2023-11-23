@@ -1,5 +1,6 @@
 import {
   ActionIcon,
+  Affix,
   AppShell,
   Button,
   Input,
@@ -9,18 +10,25 @@ import {
   Text,
   TextInput,
   TextInputProps,
+  Transition,
   useMantineTheme,
 } from '@mantine/core'
+import { useWindowScroll } from '@mantine/hooks'
 import { MessageCard } from '@shared/ui'
-import { IconArrowUp, IconKeyboard, IconLogout } from '@tabler/icons-react'
+import {
+  IconArrowDown,
+  IconArrowUp,
+  IconChevronDown,
+  IconKeyboard,
+  IconLogout,
+} from '@tabler/icons-react'
 import { useUnit } from 'effector-react'
-import { FormEventHandler } from 'react'
+import { FormEventHandler, useRef } from 'react'
 import {
   $message,
   $messages,
   $user,
   $username,
-  $usernameError,
   messageChanged,
   messageFormSubmitted,
   userLoggedOut,
@@ -31,8 +39,8 @@ import {
 const MessageInput = (props: TextInputProps) => {
   const theme = useMantineTheme()
   const [message, user] = useUnit([$message, $user])
-  const onFormSubmit: FormEventHandler = (e) => {
-    e.preventDefault()
+  const onFormSubmit: FormEventHandler = (event) => {
+    event.preventDefault()
     messageFormSubmitted()
   }
 
@@ -55,6 +63,7 @@ const MessageInput = (props: TextInputProps) => {
             stroke={1.5}
           />
         }
+        leftSectionWidth={42}
         rightSectionWidth={42}
         rightSection={
           <ActionIcon
@@ -77,12 +86,11 @@ const MessageInput = (props: TextInputProps) => {
 }
 
 const UsernameInput = () => {
-  const [username, error] = useUnit([$username, $usernameError])
-  const onFormSubmit: FormEventHandler = (e) => {
-    e.preventDefault()
+  const [username] = useUnit([$username])
+  const onFormSubmit: FormEventHandler = (event) => {
+    event.preventDefault()
     usernameFormSubmitted()
   }
-  console.log('error', error)
 
   return (
     <Paper
@@ -116,9 +124,7 @@ const UsernameInput = () => {
 
 const Header = () => {
   const theme = useMantineTheme()
-
   const [user] = useUnit([$user])
-  const icon = <IconLogout size={16} />
 
   if (!user) return <UsernameInput />
 
@@ -137,7 +143,11 @@ const Header = () => {
       <Text size="lg" fw={500} c={theme.primaryColor}>
         {user}
       </Text>
-      <Button leftSection={icon} onClick={() => userLoggedOut()} size="md">
+      <Button
+        leftSection={<IconLogout size={16} />}
+        onClick={() => userLoggedOut()}
+        size="md"
+      >
         Выйти
       </Button>
     </Paper>
@@ -146,6 +156,7 @@ const Header = () => {
 
 export const Chat = () => {
   const [messages] = useUnit([$messages])
+  const [scroll, scrollTo] = useWindowScroll()
   return (
     <AppShell
       padding="md"
@@ -176,6 +187,26 @@ export const Chat = () => {
             <MessageCard key={crypto.randomUUID()} message={message} />
           ))}
         </Stack>
+        <Affix position={{ bottom: 78, right: 12 }}>
+          <Transition
+            transition="slide-up"
+            mounted={
+              scroll.y < document.body.scrollHeight - window.innerHeight - 200
+            }
+          >
+            {(transitionStyles) => (
+              <ActionIcon
+                size="xl"
+                radius="xl"
+                style={transitionStyles}
+                onClick={() => scrollTo({ y: document.body.scrollHeight })}
+                variant="light"
+              >
+                <IconChevronDown style={{ width: rem(32), height: rem(32) }} />
+              </ActionIcon>
+            )}
+          </Transition>
+        </Affix>
       </AppShell.Main>
       <AppShell.Footer>
         <MessageInput />
