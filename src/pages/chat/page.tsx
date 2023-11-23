@@ -11,10 +11,11 @@ import {
   TextInput,
   TextInputProps,
   Transition,
+  useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
 import { useWindowScroll } from '@mantine/hooks'
-import { MessageCard } from '@shared/ui'
+import { MessageCard, ToggleTheme } from '@shared/ui'
 import {
   IconArrowUp,
   IconChevronDown,
@@ -38,9 +39,11 @@ import {
 const MessageInput = (props: TextInputProps) => {
   const theme = useMantineTheme()
   const [message, user] = useUnit([$message, $user])
+  const [, scrollTo] = useWindowScroll()
   const onFormSubmit: FormEventHandler = (event) => {
     event.preventDefault()
     messageFormSubmitted()
+    setTimeout(() => scrollTo({ y: document.body.scrollHeight }), 100)
   }
 
   return (
@@ -95,7 +98,6 @@ const UsernameInput = () => {
     <Paper
       component="form"
       onSubmit={onFormSubmit}
-      p="sm"
       w="100%"
       style={{
         display: 'flex',
@@ -129,7 +131,6 @@ const Header = () => {
 
   return (
     <Paper
-      p="sm"
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -154,6 +155,7 @@ const Header = () => {
 }
 
 export const Chat = () => {
+  const { colorScheme } = useMantineColorScheme()
   const [messages] = useUnit([$messages])
   const [scroll, scrollTo] = useWindowScroll()
   return (
@@ -163,15 +165,22 @@ export const Chat = () => {
       header={{ height: 66 }}
       footer={{ height: 66 }}
       navbar={{ width: 250, breakpoint: 'md', collapsed: { mobile: true } }}
-      bg="var(--mantine-color-gray-1)"
+      bg={
+        colorScheme === 'dark'
+          ? 'var(--mantine-color-dark-8)'
+          : 'var(--mantine-color-gray-1)'
+      }
     >
       <AppShell.Header
+        p="sm"
         style={{
           display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'flex-end',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 'var(--mantine-spacing-sm)',
         }}
       >
+        <ToggleTheme />
         <Header />
       </AppShell.Header>
       <AppShell.Navbar />
@@ -188,9 +197,9 @@ export const Chat = () => {
         </Stack>
         <Affix position={{ bottom: 78, right: 12 }}>
           <Transition
-            transition="slide-up"
+            transition="pop"
             mounted={
-              scroll.y < document.body.scrollHeight - window.innerHeight - 200
+              scroll.y < document.body.scrollHeight - window.innerHeight - 300
             }
           >
             {(transitionStyles) => (

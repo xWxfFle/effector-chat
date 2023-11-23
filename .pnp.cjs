@@ -34,6 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.2.31"],\
             ["@types/react-dom", "npm:18.2.14"],\
             ["@vitejs/plugin-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:4.1.0"],\
+            ["clsx", "npm:2.0.0"],\
             ["effector", "npm:22.8.7"],\
             ["effector-localstorage", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:1.0.0"],\
             ["effector-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:22.5.4"],\
@@ -2247,6 +2248,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.2.31"],\
             ["@types/react-dom", "npm:18.2.14"],\
             ["@vitejs/plugin-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:4.1.0"],\
+            ["clsx", "npm:2.0.0"],\
             ["effector", "npm:22.8.7"],\
             ["effector-localstorage", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:1.0.0"],\
             ["effector-react", "virtual:47a3d33c2d41bb975e2619bf91afb97bf2eeb4365567350cdf7b0062e8df1fd38895da58d567630bacd563324af360ae4fdcce2897746a4e6d96fa259ec2039f#npm:22.5.4"],\
