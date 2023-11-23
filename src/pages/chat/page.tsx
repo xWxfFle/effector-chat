@@ -43,7 +43,10 @@ const MessageInput = (props: TextInputProps) => {
   const onFormSubmit: FormEventHandler = (event) => {
     event.preventDefault()
     messageFormSubmitted()
-    setTimeout(() => scrollTo({ y: document.body.scrollHeight }), 100)
+    setTimeout(
+      () => scrollTo({ y: document.body.scrollHeight - window.innerHeight }),
+      100,
+    )
   }
 
   return (
@@ -108,7 +111,7 @@ const UsernameInput = () => {
     >
       <Input
         placeholder="Ваше имя..."
-        maxLength={24}
+        maxLength={16}
         required
         style={{ flex: 1 }}
         value={username}
