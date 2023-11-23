@@ -16,14 +16,13 @@ import {
 import { useWindowScroll } from '@mantine/hooks'
 import { MessageCard } from '@shared/ui'
 import {
-  IconArrowDown,
   IconArrowUp,
   IconChevronDown,
   IconKeyboard,
   IconLogout,
 } from '@tabler/icons-react'
 import { useUnit } from 'effector-react'
-import { FormEventHandler, useRef } from 'react'
+import { FormEventHandler } from 'react'
 import {
   $message,
   $messages,
