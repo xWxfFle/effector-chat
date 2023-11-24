@@ -23,7 +23,7 @@ import {
   IconLogout,
 } from '@tabler/icons-react'
 import { useUnit } from 'effector-react'
-import { FormEventHandler } from 'react'
+import { ChangeEvent, FormEventHandler } from 'react'
 import {
   $message,
   $messages,
@@ -58,7 +58,9 @@ const MessageInput = (props: TextInputProps) => {
         p="sm"
         maxLength={1024}
         onSubmit={onFormSubmit}
-        onChange={(event) => messageChanged(event.currentTarget.value)}
+        onChange={messageChanged.prepend(
+          (event: ChangeEvent<HTMLInputElement>) => event.currentTarget.value,
+        )}
         placeholder={
           user ? 'Написать сообщение...' : 'Введите имя, чтобы начать общение'
         }
@@ -115,7 +117,9 @@ const UsernameInput = () => {
         required
         style={{ flex: 1 }}
         value={username}
-        onChange={(event) => usernameChanged(event.currentTarget.value)}
+        onChange={usernameChanged.prepend(
+          (event: ChangeEvent<HTMLInputElement>) => event.currentTarget.value,
+        )}
         size="md"
         autoComplete="nope"
       />

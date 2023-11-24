@@ -1,12 +1,14 @@
 import { Message } from '@shared/api'
-import { createEvent, createStore, sample } from 'effector'
+import { createEvent, createStore, restore, sample } from 'effector'
 import persist from 'effector-localstorage'
 import { empty, not, or, reset } from 'patronum'
 
+type Nullable<T> = T | null
+
 export const createField = <Value, Error>(defaultValue: Value) => {
-  const $value = createStore(defaultValue)
-  const $error = createStore<Error | null>(null)
-  const $set = createEvent<string>()
+  const $error = createStore<Nullable<Error>>(null)
+  const $set = createEvent<Value>()
+  const $value = restore($set, defaultValue)
   return [$value, $set, $error] as const
 }
 
@@ -19,18 +21,16 @@ export const [$message, messageChanged, $messageError] = createField<
   string,
   null | 'empty'
 >('')
-export const $user = createStore<string | null>(null)
+
+export const $user = createStore<Nullable<string>>(null)
 export const $messages = createStore<Message[]>([])
-export const messageFormValid = not(or(empty($user), $messageError))
-export const usernameFormValid = not($usernameError)
+export const $messageFormValid = not(or(empty($user), $messageError))
+export const $usernameFormValid = not($usernameError)
 
 export const userLoggedOut = createEvent()
 export const clearMessage = createEvent()
 export const messageFormSubmitted = createEvent()
 export const usernameFormSubmitted = createEvent()
-
-$username.on(usernameChanged, (_, username) => username)
-$message.on(messageChanged, (_, message) => message)
 
 persist({ store: $user, key: 'user' })
 persist({ store: $message, key: 'message' })
@@ -49,7 +49,7 @@ sample({
 sample({
   clock: usernameFormSubmitted,
   source: $username,
-  filter: usernameFormValid,
+  filter: $usernameFormValid,
   target: $user,
 })
 
@@ -60,18 +60,17 @@ sample({
     if (message.trim().length === 0) return 'empty'
     return null
   },
-  filter: messageFormValid,
   target: $messageError,
 })
 
 sample({
   clock: messageFormSubmitted,
   source: { message: $message, messages: $messages, user: $user },
+  filter: $messageFormValid,
   fn: ({ message, messages, user }) => {
     if (!message || !user) return messages
     return messages.concat({ user, body: message })
   },
-  filter: messageFormValid,
   target: [$messages, clearMessage],
 })
 
