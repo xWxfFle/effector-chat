@@ -1,7 +1,7 @@
 import { Message } from '@shared/api'
 import { createEvent, createStore, sample } from 'effector'
 import persist from 'effector-localstorage'
-import { and, empty, not, reset } from 'patronum'
+import { empty, not, or, reset } from 'patronum'
 
 export const createField = <Value, Error>(defaultValue: Value) => {
   const $value = createStore(defaultValue)
@@ -21,6 +21,8 @@ export const [$message, messageChanged, $messageError] = createField<
 >('')
 export const $user = createStore<string | null>(null)
 export const $messages = createStore<Message[]>([])
+export const messageFormValid = not(or(empty($user), $messageError))
+export const usernameFormValid = not($usernameError)
 
 export const userLoggedOut = createEvent()
 export const clearMessage = createEvent()
@@ -47,8 +49,7 @@ sample({
 sample({
   clock: usernameFormSubmitted,
   source: $username,
-  fn: (username) => username,
-  filter: not($usernameError),
+  filter: usernameFormValid,
   target: $user,
 })
 
@@ -59,7 +60,7 @@ sample({
     if (message.trim().length === 0) return 'empty'
     return null
   },
-  filter: not(empty($user)),
+  filter: messageFormValid,
   target: $messageError,
 })
 
@@ -70,7 +71,7 @@ sample({
     if (!message || !user) return messages
     return messages.concat({ user, body: message })
   },
-  filter: and(not(empty($user)), not($messageError)),
+  filter: messageFormValid,
   target: [$messages, clearMessage],
 })
 
