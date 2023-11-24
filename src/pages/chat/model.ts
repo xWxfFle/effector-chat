@@ -14,12 +14,12 @@ export const createField = <Value, Error>(defaultValue: Value) => {
 
 export const [$username, usernameChanged, $usernameError] = createField<
   string,
-  null | 'empty'
+  'empty'
 >('')
 
 export const [$message, messageChanged, $messageError] = createField<
   string,
-  null | 'empty'
+  'empty'
 >('')
 
 export const $user = createStore<Nullable<string>>(null)
