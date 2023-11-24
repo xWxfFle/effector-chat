@@ -2,6 +2,7 @@ import { Message } from '@shared/api'
 import { createEvent, createStore, restore, sample } from 'effector'
 import persist from 'effector-localstorage'
 import { empty, not, or, reset } from 'patronum'
+import { ChangeEvent } from 'react'
 
 type Nullable<T> = T | null
 
@@ -21,6 +22,14 @@ export const [$message, messageChanged, $messageError] = createField<
   string,
   'empty'
 >('')
+
+export const handleUsernameChange = usernameChanged.prepend(
+  (event: ChangeEvent<HTMLInputElement>) => event.currentTarget.value,
+)
+
+export const handleMessageChange = messageChanged.prepend(
+  (event: ChangeEvent<HTMLInputElement>) => event.currentTarget.value,
+)
 
 export const $user = createStore<Nullable<string>>(null)
 export const $messages = createStore<Message[]>([])
