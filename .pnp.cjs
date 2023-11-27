@@ -29,6 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@farfetched/core", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.10.6"],\
+            ["@farfetched/runtypes", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.10.6"],\
             ["@mantine/core", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:7.1.5"],\
             ["@mantine/hooks", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:7.1.5"],\
             ["@supabase/supabase-js", "npm:2.38.5"],\
@@ -56,6 +57,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:18.2.0"],\
+            ["runtypes", "npm:6.7.0"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["vite", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:4.5.0"],\
             ["vite-tsconfig-paths", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:4.2.1"]\
@@ -888,6 +890,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@types/effector",\
             "effector"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@farfetched/runtypes", [\
+        ["npm:0.10.6", {\
+          "packageLocation": "./.yarn/cache/@farfetched-runtypes-npm-0.10.6-8252f28a9d-1e5eb4ae7a.zip/node_modules/@farfetched/runtypes/",\
+          "packageDependencies": [\
+            ["@farfetched/runtypes", "npm:0.10.6"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.10.6", {\
+          "packageLocation": "./.yarn/__virtual__/@farfetched-runtypes-virtual-5abb681396/0/cache/@farfetched-runtypes-npm-0.10.6-8252f28a9d-1e5eb4ae7a.zip/node_modules/@farfetched/runtypes/",\
+          "packageDependencies": [\
+            ["@farfetched/runtypes", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.10.6"],\
+            ["@farfetched/core", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.10.6"],\
+            ["@types/farfetched__core", null],\
+            ["@types/runtypes", null],\
+            ["runtypes", "npm:6.7.0"]\
+          ],\
+          "packagePeers": [\
+            "@farfetched/core",\
+            "@types/farfetched__core",\
+            "@types/runtypes",\
+            "runtypes"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2707,6 +2735,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["effector-chat", "workspace:."],\
             ["@farfetched/core", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.10.6"],\
+            ["@farfetched/runtypes", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.10.6"],\
             ["@mantine/core", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:7.1.5"],\
             ["@mantine/hooks", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:7.1.5"],\
             ["@supabase/supabase-js", "npm:2.38.5"],\
@@ -2734,6 +2763,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:18.2.0"],\
+            ["runtypes", "npm:6.7.0"],\
             ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"],\
             ["vite", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:4.5.0"],\
             ["vite-tsconfig-paths", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:4.2.1"]\
@@ -6422,6 +6452,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["run-parallel", "npm:1.2.0"],\
             ["queue-microtask", "npm:1.2.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["runtypes", [\
+        ["npm:6.7.0", {\
+          "packageLocation": "./.yarn/cache/runtypes-npm-6.7.0-bd03918511-644389811b.zip/node_modules/runtypes/",\
+          "packageDependencies": [\
+            ["runtypes", "npm:6.7.0"]\
           ],\
           "linkType": "HARD"\
         }]\

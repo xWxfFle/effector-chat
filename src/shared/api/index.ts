@@ -1,17 +1,30 @@
 import { createQuery } from '@farfetched/core'
+import { Array, Record, Static, String } from 'runtypes'
 import { supabase } from './config'
 
-export interface Message {
-  id: string
-  created_at: string
-  user: string
-  body: string
-}
+export const Message = Record({
+  id: String,
+  created_at: String,
+  user: String,
+  body: String,
+})
 
-export const messagesQuery = createQuery({
+export type Message = Static<typeof Message>
+
+export const getAllMessagesQuery = createQuery({
   handler: async () => {
     const { data: messages } = await supabase.from('messages').select('*')
-
-    return messages as Message[]
+    if (Array(Message).guard(messages)) return messages
+    return []
   },
 })
+
+// export const sendMessageMutation = createMutation({
+//   handler: async ({ user, body }: Message) => {
+//     const { data } = await supabase
+//       .from('messages')
+//       .insert([{ user, body }])
+//       .select()
+//     return data
+//   },
+// })

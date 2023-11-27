@@ -14,21 +14,14 @@ import { ChangeEvent } from 'react'
 
 type Nullable<T> = T | null
 
-export const currentRoute = routes.chat
-
-export const routeOpenedFx = createEffect().use(() => api.messagesQuery.start())
-
-sample({
-  clock: currentRoute.opened,
-  target: routeOpenedFx,
-})
-
 export const createField = <Value, Error>(defaultValue: Value) => {
   const $error = createStore<Nullable<Error>>(null)
   const $set = createEvent<Value>()
   const $value = restore($set, defaultValue)
   return [$value, $set, $error] as const
 }
+
+export const currentRoute = routes.chat
 
 export const [$username, usernameChanged, $usernameError] = createField<
   string,
@@ -62,6 +55,22 @@ export const usernameFormSubmitted = createEvent()
 persist({ store: $user, key: 'user' })
 persist({ store: $message, key: 'message' })
 persist({ store: $messages, key: 'messages' })
+
+export const routeOpenedFx = createEffect().use(() =>
+  api.getAllMessagesQuery.start(),
+)
+
+sample({
+  clock: currentRoute.opened,
+  target: routeOpenedFx,
+})
+
+sample({
+  clock: api.getAllMessagesQuery.$succeeded,
+  source: api.getAllMessagesQuery.$data,
+  fn: (messages) => messages ?? [],
+  target: $messages,
+})
 
 sample({
   clock: usernameFormSubmitted,

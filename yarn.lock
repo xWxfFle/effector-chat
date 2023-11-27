@@ -607,6 +607,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@farfetched/runtypes@npm:^0.10.6":
+  version: 0.10.6
+  resolution: "@farfetched/runtypes@npm:0.10.6"
+  peerDependencies:
+    "@farfetched/core": 0.10.6
+    runtypes: ^6.6.0
+  checksum: 1e5eb4ae7adb492095d14ac71fc0ada552e6b3be266859cee7fa388ae46b442c179acd8682f7a77959bced0ef4ff0a33090a4c823c106bcf0e7d26d7de80664c
+  languageName: node
+  linkType: hard
+
 "@floating-ui/core@npm:^1.4.2":
   version: 1.5.0
   resolution: "@floating-ui/core@npm:1.5.0"
@@ -1989,6 +1999,7 @@ __metadata:
   resolution: "effector-chat@workspace:."
   dependencies:
     "@farfetched/core": ^0.10.6
+    "@farfetched/runtypes": ^0.10.6
     "@mantine/core": ^7.1.5
     "@mantine/hooks": ^7.1.5
     "@supabase/supabase-js": ^2.38.5
@@ -2016,6 +2027,7 @@ __metadata:
     prettier: ^3.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
+    runtypes: ^6.7.0
     typescript: ^5.0.2
     vite: ^4.4.5
     vite-tsconfig-paths: ^4.2.1
@@ -5065,6 +5077,13 @@ __metadata:
   dependencies:
     queue-microtask: ^1.2.2
   checksum: cb4f97ad25a75ebc11a8ef4e33bb962f8af8516bb2001082ceabd8902e15b98f4b84b4f8a9b222e5d57fc3bd1379c483886ed4619367a7680dad65316993021d
+  languageName: node
+  linkType: hard
+
+"runtypes@npm:^6.7.0":
+  version: 6.7.0
+  resolution: "runtypes@npm:6.7.0"
+  checksum: 644389811b190488382d45c2cd56ef85a8d4cb200a249d107a803fadef872122b07a9e74a3086c0b9f9b17f5bb5c0a585e8abe50b166ed0bff63dbb218af80bc
   languageName: node
   linkType: hard
 
