@@ -36,6 +36,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.2.31"],\
             ["@types/react-dom", "npm:18.2.14"],\
             ["@vitejs/plugin-react", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:4.1.0"],\
+            ["atomic-router", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.0"],\
+            ["atomic-router-react", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.5"],\
             ["clsx", "npm:2.0.0"],\
             ["effector", "npm:22.8.7"],\
             ["effector-localstorage", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:1.0.0"],\
@@ -46,6 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-module-utils", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:2.8.0"],\
             ["eslint-plugin-jsx-a11y", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:6.7.1"],\
             ["eslint-plugin-react-refresh", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.4.3"],\
+            ["history", "npm:5.3.0"],\
             ["patronum", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:1.20.0"],\
             ["postcss", "npm:8.4.31"],\
             ["postcss-preset-mantine", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:1.9.0"],\
@@ -554,6 +557,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.23.2-d013d6cf7e-6c4df4839e.zip/node_modules/@babel/runtime/",\
           "packageDependencies": [\
             ["@babel/runtime", "npm:7.23.2"],\
+            ["regenerator-runtime", "npm:0.14.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:7.23.4", {\
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.23.4-2e68957572-8eb6a6b236.zip/node_modules/@babel/runtime/",\
+          "packageDependencies": [\
+            ["@babel/runtime", "npm:7.23.4"],\
             ["regenerator-runtime", "npm:0.14.0"]\
           ],\
           "linkType": "HARD"\
@@ -1983,6 +1994,68 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["atomic-router", [\
+        ["npm:0.8.0", {\
+          "packageLocation": "./.yarn/cache/atomic-router-npm-0.8.0-3c65dd986f-9fcb453fbb.zip/node_modules/atomic-router/",\
+          "packageDependencies": [\
+            ["atomic-router", "npm:0.8.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.0", {\
+          "packageLocation": "./.yarn/__virtual__/atomic-router-virtual-a18dc568ee/0/cache/atomic-router-npm-0.8.0-3c65dd986f-9fcb453fbb.zip/node_modules/atomic-router/",\
+          "packageDependencies": [\
+            ["atomic-router", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.0"],\
+            ["@types/effector", null],\
+            ["@types/history", null],\
+            ["effector", "npm:22.8.7"],\
+            ["history", "npm:5.3.0"],\
+            ["path-to-regexp", "npm:6.2.1"]\
+          ],\
+          "packagePeers": [\
+            "@types/effector",\
+            "@types/history",\
+            "effector",\
+            "history"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["atomic-router-react", [\
+        ["npm:0.8.5", {\
+          "packageLocation": "./.yarn/cache/atomic-router-react-npm-0.8.5-0c9eb09c92-8be846fca5.zip/node_modules/atomic-router-react/",\
+          "packageDependencies": [\
+            ["atomic-router-react", "npm:0.8.5"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.5", {\
+          "packageLocation": "./.yarn/__virtual__/atomic-router-react-virtual-9b02d4b751/0/cache/atomic-router-react-npm-0.8.5-0c9eb09c92-8be846fca5.zip/node_modules/atomic-router-react/",\
+          "packageDependencies": [\
+            ["atomic-router-react", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.5"],\
+            ["@types/atomic-router", null],\
+            ["@types/effector", null],\
+            ["@types/effector-react", null],\
+            ["@types/react", "npm:18.2.31"],\
+            ["atomic-router", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.0"],\
+            ["clsx", "npm:1.2.1"],\
+            ["effector", "npm:22.8.7"],\
+            ["effector-react", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:22.5.4"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/atomic-router",\
+            "@types/effector-react",\
+            "@types/effector",\
+            "@types/react",\
+            "atomic-router",\
+            "effector-react",\
+            "effector",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["available-typed-arrays", [\
         ["npm:1.0.5", {\
           "packageLocation": "./.yarn/cache/available-typed-arrays-npm-1.0.5-88f321e4d3-20eb47b3ce.zip/node_modules/available-typed-arrays/",\
@@ -2289,6 +2362,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["clsx", [\
+        ["npm:1.2.1", {\
+          "packageLocation": "./.yarn/cache/clsx-npm-1.2.1-77792dc182-30befca801.zip/node_modules/clsx/",\
+          "packageDependencies": [\
+            ["clsx", "npm:1.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:2.0.0", {\
           "packageLocation": "./.yarn/cache/clsx-npm-2.0.0-afafbbe44a-a2cfb2351b.zip/node_modules/clsx/",\
           "packageDependencies": [\
@@ -2634,6 +2714,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.2.31"],\
             ["@types/react-dom", "npm:18.2.14"],\
             ["@vitejs/plugin-react", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:4.1.0"],\
+            ["atomic-router", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.0"],\
+            ["atomic-router-react", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.8.5"],\
             ["clsx", "npm:2.0.0"],\
             ["effector", "npm:22.8.7"],\
             ["effector-localstorage", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:1.0.0"],\
@@ -2644,6 +2726,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-module-utils", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:2.8.0"],\
             ["eslint-plugin-jsx-a11y", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:6.7.1"],\
             ["eslint-plugin-react-refresh", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:0.4.3"],\
+            ["history", "npm:5.3.0"],\
             ["patronum", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:1.20.0"],\
             ["postcss", "npm:8.4.31"],\
             ["postcss-preset-mantine", "virtual:018cc68796562ced43900994643099e6e436d278a0528b2639ab00b1d870e61baf05ff47f378f8c06534070ee4f99865c76f67d091a1095308786e2e60e7fa0d#npm:1.9.0"],\
@@ -4285,6 +4368,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["history", [\
+        ["npm:5.3.0", {\
+          "packageLocation": "./.yarn/cache/history-npm-5.3.0-00136b6a63-d73c35df49.zip/node_modules/history/",\
+          "packageDependencies": [\
+            ["history", "npm:5.3.0"],\
+            ["@babel/runtime", "npm:7.23.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["hosted-git-info", [\
         ["npm:2.8.9", {\
           "packageLocation": "./.yarn/cache/hosted-git-info-npm-2.8.9-62c44fa93f-c955394bda.zip/node_modules/hosted-git-info/",\
@@ -5690,6 +5783,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["path-scurry", "npm:1.10.1"],\
             ["lru-cache", "npm:10.0.1"],\
             ["minipass", "npm:7.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["path-to-regexp", [\
+        ["npm:6.2.1", {\
+          "packageLocation": "./.yarn/cache/path-to-regexp-npm-6.2.1-8ebfe03654-f0227af828.zip/node_modules/path-to-regexp/",\
+          "packageDependencies": [\
+            ["path-to-regexp", "npm:6.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\

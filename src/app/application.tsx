@@ -1,11 +1,15 @@
 import '@mantine/core/styles.css'
 import { MantineProvider } from '@mantine/core'
-import { Chat } from '@pages/chat'
+import { Pages } from '@pages'
+import { router } from '@shared/routing'
+import { RouterProvider } from 'atomic-router-react'
 
 export const App = () => {
   return (
     <MantineProvider>
-      <Chat />
+      <RouterProvider router={router}>
+        <Pages />
+      </RouterProvider>
     </MantineProvider>
   )
 }

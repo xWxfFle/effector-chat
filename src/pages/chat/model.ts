@@ -1,10 +1,27 @@
 import { Message } from '@shared/api'
-import { createEvent, createStore, restore, sample } from 'effector'
+import * as api from '@shared/api'
+import { routes } from '@shared/routing'
+import {
+  createEffect,
+  createEvent,
+  createStore,
+  restore,
+  sample,
+} from 'effector'
 import persist from 'effector-localstorage'
 import { empty, not, or, reset } from 'patronum'
 import { ChangeEvent } from 'react'
 
 type Nullable<T> = T | null
+
+export const currentRoute = routes.chat
+
+export const routeOpenedFx = createEffect().use(() => api.messagesQuery.start())
+
+sample({
+  clock: currentRoute.opened,
+  target: routeOpenedFx,
+})
 
 export const createField = <Value, Error>(defaultValue: Value) => {
   const $error = createStore<Nullable<Error>>(null)

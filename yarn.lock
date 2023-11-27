@@ -353,6 +353,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.7.6":
+  version: 7.23.4
+  resolution: "@babel/runtime@npm:7.23.4"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: 8eb6a6b2367f7d60e7f7dd83f477cc2e2fdb169e5460694d7614ce5c730e83324bcf29251b70940068e757ad1ee56ff8073a372260d90cad55f18a825caf97cd
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.22.15":
   version: 7.22.15
   resolution: "@babel/template@npm:7.22.15"
@@ -1436,6 +1445,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"atomic-router-react@npm:^0.8.5":
+  version: 0.8.5
+  resolution: "atomic-router-react@npm:0.8.5"
+  dependencies:
+    clsx: ^1.1.1
+  peerDependencies:
+    atomic-router: ^0.8.0
+    effector: ^22
+    effector-react: ^22
+    react: ^17 || ^18
+  checksum: 8be846fca57209d6ba10ca07f6e7e12983cacf35aa755c091e75010404ea4d8e23d8e49537602e2d1ba3e8c9bd53720dec08e5d932404825056a29b3c1d5e0db
+  languageName: node
+  linkType: hard
+
+"atomic-router@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "atomic-router@npm:0.8.0"
+  dependencies:
+    path-to-regexp: ^6.2.0
+  peerDependencies:
+    effector: ^22
+    history: ^5.3.0
+  checksum: 9fcb453fbb97f95ded2bf59b3e0ab1143b5a388c9b887481d803eda4327e6ea10b49f5b9cc0dad54dd33f7557057717401036561d0eb75f7f7185a1c8e94704c
+  languageName: node
+  linkType: hard
+
 "available-typed-arrays@npm:^1.0.5":
   version: 1.0.5
   resolution: "available-typed-arrays@npm:1.0.5"
@@ -1690,6 +1725,13 @@ __metadata:
   version: 2.0.0
   resolution: "clsx@npm:2.0.0"
   checksum: a2cfb2351b254611acf92faa0daf15220f4cd648bdf96ce369d729813b85336993871a4bf6978ddea2b81b5a130478339c20d9d0b5c6fc287e5147f0c059276e
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^1.1.1":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
   languageName: node
   linkType: hard
 
@@ -1954,6 +1996,8 @@ __metadata:
     "@types/react": ^18.2.15
     "@types/react-dom": ^18.2.7
     "@vitejs/plugin-react": ^4.0.3
+    atomic-router: ^0.8.0
+    atomic-router-react: ^0.8.5
     clsx: ^2.0.0
     effector: ^22.8.7
     effector-localstorage: ^1.0.0
@@ -1964,6 +2008,7 @@ __metadata:
     eslint-module-utils: ^2.8.0
     eslint-plugin-jsx-a11y: ^6.7.1
     eslint-plugin-react-refresh: ^0.4.3
+    history: ^5.3.0
     patronum: ^1.20.0
     postcss: ^8.4.31
     postcss-preset-mantine: ^1.9.0
@@ -3244,6 +3289,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"history@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "history@npm:5.3.0"
+  dependencies:
+    "@babel/runtime": ^7.7.6
+  checksum: d73c35df49d19ac172f9547d30a21a26793e83f16a78386d99583b5bf1429cc980799fcf1827eb215d31816a6600684fba9686ce78104e23bd89ec239e7c726f
+  languageName: node
+  linkType: hard
+
 "hosted-git-info@npm:^2.1.4":
   version: 2.8.9
   resolution: "hosted-git-info@npm:2.8.9"
@@ -4513,6 +4567,13 @@ __metadata:
     lru-cache: ^9.1.1 || ^10.0.0
     minipass: ^5.0.0 || ^6.0.2 || ^7.0.0
   checksum: e2557cff3a8fb8bc07afdd6ab163a92587884f9969b05bbbaf6fe7379348bfb09af9ed292af12ed32398b15fb443e81692047b786d1eeb6d898a51eb17ed7d90
+  languageName: node
+  linkType: hard
+
+"path-to-regexp@npm:^6.2.0":
+  version: 6.2.1
+  resolution: "path-to-regexp@npm:6.2.1"
+  checksum: f0227af8284ea13300f4293ba111e3635142f976d4197f14d5ad1f124aebd9118783dd2e5f1fe16f7273743cc3dbeddfb7493f237bb27c10fdae07020cc9b698
   languageName: node
   linkType: hard
 

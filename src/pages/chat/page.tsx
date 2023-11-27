@@ -158,7 +158,7 @@ const Header = () => {
   )
 }
 
-export const Chat = () => {
+export const ChatPage = () => {
   pageStarted()
   const { colorScheme } = useMantineColorScheme()
   const [messages] = useUnit([$messages])
