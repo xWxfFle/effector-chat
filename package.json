@@ -1,5 +1,5 @@
 {
-  "name": "cs-chat",
+  "name": "effector-chat",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,8 +11,10 @@
     "lint:fix": "eslint \"src/**/*.{js,mjs,cjs,ts,mts,jsx,tsx}\" --fix"
   },
   "dependencies": {
+    "@farfetched/core": "^0.10.6",
     "@mantine/core": "^7.1.5",
     "@mantine/hooks": "^7.1.5",
+    "@supabase/supabase-js": "^2.38.5",
     "@tabler/icons-react": "^2.39.0",
     "clsx": "^2.0.0",
     "effector": "^22.8.7",

@@ -32,6 +32,7 @@ import {
   handleMessageChange,
   handleUsernameChange,
   messageFormSubmitted,
+  pageStarted,
   userLoggedOut,
   usernameFormSubmitted,
 } from './model'
@@ -158,6 +159,7 @@ const Header = () => {
 }
 
 export const Chat = () => {
+  pageStarted()
   const { colorScheme } = useMantineColorScheme()
   const [messages] = useUnit([$messages])
   const [scroll, scrollTo] = useWindowScroll()

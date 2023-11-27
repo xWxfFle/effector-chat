@@ -36,6 +36,7 @@ export const $messages = createStore<Message[]>([])
 export const $messageFormValid = not(or(empty($user), $messageError))
 export const $usernameFormValid = not($usernameError)
 
+export const pageStarted = createEvent()
 export const userLoggedOut = createEvent()
 export const clearMessage = createEvent()
 export const messageFormSubmitted = createEvent()
@@ -78,7 +79,12 @@ sample({
   filter: $messageFormValid,
   fn: ({ message, messages, user }) => {
     if (!message || !user) return messages
-    return messages.concat({ user, body: message })
+    return messages.concat({
+      user,
+      body: message,
+      created_at: 'today',
+      id: Math.random().toString(),
+    })
   },
   target: [$messages, clearMessage],
 })
