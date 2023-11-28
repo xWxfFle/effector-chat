@@ -105,14 +105,9 @@ sample({
   filter: $messageFormValid,
   fn: ({ message, messages, user }) => {
     if (!message || !user) return messages
-    return messages.concat({
-      user,
-      body: message,
-      created_at: 'today',
-      id: Math.random().toString(),
-    })
+    return api.sendMessageMutation.start({ user, body: message })
   },
-  target: [$messages, clearMessage],
+  target: [clearMessage],
 })
 
 reset({
