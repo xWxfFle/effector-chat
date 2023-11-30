@@ -2,7 +2,13 @@ import { Message, MessageParams } from '@shared/api'
 import * as api from '@shared/api'
 import { supabase } from '@shared/api/config'
 import { routes } from '@shared/routing'
-import { createEvent, createStore, restore, sample } from 'effector'
+import {
+  createEffect,
+  createEvent,
+  createStore,
+  restore,
+  sample,
+} from 'effector'
 import persist from 'effector-localstorage'
 import { empty, not, or, reset } from 'patronum'
 import { ChangeEvent } from 'react'
@@ -51,6 +57,17 @@ export const clearMessage = createEvent()
 export const messageFormSubmitted = createEvent()
 export const usernameFormSubmitted = createEvent()
 
+const channel = supabase
+  .channel('chat-channel')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'messages' },
+    (payload) => newMessageDelivered(payload.new as Message),
+  )
+
+export const channelSubribeFx = createEffect(() => channel.subscribe())
+export const channelUnsubribeFx = createEffect(() => channel.unsubscribe())
+
 const newMessageDelivered = createEvent<Nullable<Message>>()
 const $newMessage = restore(newMessageDelivered, null)
 
@@ -60,7 +77,12 @@ persist({ store: $messages, key: 'messages' })
 
 sample({
   clock: currentRoute.opened,
-  target: [api.getAllMessagesQuery.start],
+  target: [api.getAllMessagesQuery.start, channelSubribeFx],
+})
+
+sample({
+  clock: currentRoute.closed,
+  target: channelUnsubribeFx,
 })
 
 sample({
@@ -109,15 +131,6 @@ sample({
   clock: api.sendMessageMutation.$finished,
   target: clearMessage,
 })
-
-supabase
-  .channel('custom-all-channel')
-  .on(
-    'postgres_changes',
-    { event: '*', schema: 'public', table: 'messages' },
-    (payload) => newMessageDelivered(payload.new as Message),
-  )
-  .subscribe()
 
 sample({
   clock: newMessageDelivered,
