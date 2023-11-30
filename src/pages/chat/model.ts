@@ -1,13 +1,8 @@
-import { Message } from '@shared/api'
+import { Message, MessageParams } from '@shared/api'
 import * as api from '@shared/api'
+import { supabase } from '@shared/api/config'
 import { routes } from '@shared/routing'
-import {
-  createEffect,
-  createEvent,
-  createStore,
-  restore,
-  sample,
-} from 'effector'
+import { createEvent, createStore, restore, sample } from 'effector'
 import persist from 'effector-localstorage'
 import { empty, not, or, reset } from 'patronum'
 import { ChangeEvent } from 'react'
@@ -43,6 +38,10 @@ export const handleMessageChange = messageChanged.prepend(
 
 export const $user = createStore<Nullable<string>>(null)
 export const $messages = createStore<Message[]>([])
+export const $messageFormDisabled = or(
+  not($user),
+  api.sendMessageMutation.$pending,
+)
 export const $messageFormValid = not(or(empty($user), $messageError))
 export const $usernameFormValid = not($usernameError)
 
@@ -52,17 +51,16 @@ export const clearMessage = createEvent()
 export const messageFormSubmitted = createEvent()
 export const usernameFormSubmitted = createEvent()
 
+const newMessageDelivered = createEvent<Nullable<Message>>()
+const $newMessage = restore(newMessageDelivered, null)
+
 persist({ store: $user, key: 'user' })
 persist({ store: $message, key: 'message' })
 persist({ store: $messages, key: 'messages' })
 
-export const routeOpenedFx = createEffect().use(() =>
-  api.getAllMessagesQuery.start(),
-)
-
 sample({
   clock: currentRoute.opened,
-  target: routeOpenedFx,
+  target: [api.getAllMessagesQuery.start],
 })
 
 sample({
@@ -101,13 +99,34 @@ sample({
 
 sample({
   clock: messageFormSubmitted,
-  source: { message: $message, messages: $messages, user: $user },
+  source: { message: $message, user: $user },
   filter: $messageFormValid,
-  fn: ({ message, messages, user }) => {
-    if (!message || !user) return messages
-    return api.sendMessageMutation.start({ user, body: message })
+  fn: ({ message, user }) => ({ user, body: message }) as MessageParams,
+  target: api.sendMessageMutation.start,
+})
+
+sample({
+  clock: api.sendMessageMutation.$finished,
+  target: clearMessage,
+})
+
+supabase
+  .channel('custom-all-channel')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'messages' },
+    (payload) => newMessageDelivered(payload.new as Message),
+  )
+  .subscribe()
+
+sample({
+  clock: newMessageDelivered,
+  source: { message: $newMessage, messages: $messages },
+  fn: ({ message, messages }) => {
+    if (message !== null) return messages.concat(message)
+    return messages
   },
-  target: [clearMessage],
+  target: $messages,
 })
 
 reset({

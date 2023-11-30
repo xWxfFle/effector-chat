@@ -19,8 +19,10 @@ export const getAllMessagesQuery = createQuery({
   },
 })
 
+export type MessageParams = Pick<Message, 'user' | 'body'>
+
 export const sendMessageMutation = createMutation({
-  handler: async ({ user, body }: Pick<Message, 'user' | 'body'>) => {
+  handler: async ({ user, body }: MessageParams) => {
     const { data } = await supabase
       .from('messages')
       .insert([{ user, body }])

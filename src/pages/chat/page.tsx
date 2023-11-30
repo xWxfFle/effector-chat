@@ -26,6 +26,7 @@ import { useUnit } from 'effector-react'
 import { FormEventHandler } from 'react'
 import {
   $message,
+  $messageFormDisabled,
   $messages,
   $user,
   $username,
@@ -39,22 +40,26 @@ import {
 
 const MessageInput = (props: TextInputProps) => {
   const theme = useMantineTheme()
-  const [message, user] = useUnit([$message, $user])
-  const [, scrollTo] = useWindowScroll()
+  const [message, user, messageFormDisabled] = useUnit([
+    $message,
+    $user,
+    $messageFormDisabled,
+  ])
+  // const [, scrollTo] = useWindowScroll()
   const onFormSubmit: FormEventHandler = (event) => {
     event.preventDefault()
     messageFormSubmitted()
-    setTimeout(
-      () => scrollTo({ y: document.body.scrollHeight - window.innerHeight }),
-      100,
-    )
+    // setTimeout(
+    //   () => scrollTo({ y: document.body.scrollHeight - window.innerHeight }),
+    //   100,
+    // )
   }
 
   return (
     <Paper component="form" onSubmit={onFormSubmit} w="100%">
       <TextInput
         size="md"
-        disabled={!user}
+        disabled={messageFormDisabled}
         value={message}
         p="sm"
         maxLength={1024}
