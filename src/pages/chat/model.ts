@@ -57,6 +57,9 @@ export const clearMessage = createEvent()
 export const messageFormSubmitted = createEvent()
 export const usernameFormSubmitted = createEvent()
 
+const newMessageDelivered = createEvent<Nullable<Message>>()
+const $newMessage = restore(newMessageDelivered, null)
+
 const channel = supabase
   .channel('chat-channel')
   .on(
@@ -67,9 +70,6 @@ const channel = supabase
 
 export const channelSubribeFx = createEffect(() => channel.subscribe())
 export const channelUnsubribeFx = createEffect(() => channel.unsubscribe())
-
-const newMessageDelivered = createEvent<Nullable<Message>>()
-const $newMessage = restore(newMessageDelivered, null)
 
 persist({ store: $user, key: 'user' })
 persist({ store: $message, key: 'message' })
@@ -149,5 +149,15 @@ reset({
 
 reset({
   clock: userLoggedOut,
-  target: [$username, $usernameError, $message, $messageError, $user],
+  target: [
+    $username,
+    $usernameError,
+    $message,
+    $messageError,
+    $user,
+    $newMessage,
+    $messageFormDisabled,
+    $messageFormValid,
+    $usernameFormValid,
+  ],
 })
