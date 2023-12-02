@@ -33,7 +33,6 @@ import {
   handleMessageChange,
   handleUsernameChange,
   messageFormSubmitted,
-  pageStarted,
   userLoggedOut,
   usernameFormSubmitted,
 } from './model'
@@ -164,7 +163,6 @@ const Header = () => {
 }
 
 export const ChatPage = () => {
-  pageStarted()
   const { colorScheme } = useMantineColorScheme()
   const [messages] = useUnit([$messages])
   const [scroll, scrollTo] = useWindowScroll()
@@ -202,7 +200,7 @@ export const ChatPage = () => {
           py="xs"
         >
           {messages.map((message) => (
-            <MessageCard key={crypto.randomUUID()} message={message} />
+            <MessageCard key={message.id} message={message} />
           ))}
         </Stack>
         <Affix position={{ bottom: 78, right: 12 }}>

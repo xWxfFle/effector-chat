@@ -51,7 +51,6 @@ export const $messageFormDisabled = or(
 export const $messageFormValid = not(or(empty($user), $messageError))
 export const $usernameFormValid = not($usernameError)
 
-export const pageStarted = createEvent()
 export const userLoggedOut = createEvent()
 export const clearMessage = createEvent()
 export const messageFormSubmitted = createEvent()
