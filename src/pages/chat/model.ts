@@ -1,14 +1,7 @@
 import { Message, MessageParams } from '@shared/api'
 import * as api from '@shared/api'
-import { supabase } from '@shared/api/config'
 import { routes } from '@shared/routing'
-import {
-  createEffect,
-  createEvent,
-  createStore,
-  restore,
-  sample,
-} from 'effector'
+import { attach, createEvent, createStore, restore, sample } from 'effector'
 import persist from 'effector-localstorage'
 import { empty, not, or, reset } from 'patronum'
 import { ChangeEvent } from 'react'
@@ -56,19 +49,28 @@ export const clearMessage = createEvent()
 export const messageFormSubmitted = createEvent()
 export const usernameFormSubmitted = createEvent()
 
-const newMessageDelivered = createEvent<Nullable<Message>>()
-const $newMessage = restore(newMessageDelivered, null)
+export const messageReceived = createEvent<Nullable<Message>>()
+export const $newMessage = restore(messageReceived, null)
 
-const channel = supabase
-  .channel('chat-channel')
-  .on(
-    'postgres_changes',
-    { event: '*', schema: 'public', table: 'messages' },
-    (payload) => newMessageDelivered(payload.new as Message),
-  )
+export const connectSocketFx = attach({
+  source: api.$messagesSocket,
+  effect(socket) {
+    socket
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'messages' },
+        (payload) => messageReceived(payload.new as Message),
+      )
+      .subscribe()
+  },
+})
 
-export const channelSubribeFx = createEffect(() => channel.subscribe())
-export const channelUnsubribeFx = createEffect(() => channel.unsubscribe())
+export const disconnectSocketFx = attach({
+  source: api.$messagesSocket,
+  effect(socket) {
+    socket.unsubscribe()
+  },
+})
 
 persist({ store: $user, key: 'user' })
 persist({ store: $message, key: 'message' })
@@ -76,12 +78,12 @@ persist({ store: $messages, key: 'messages' })
 
 sample({
   clock: currentRoute.opened,
-  target: [api.getAllMessagesQuery.start, channelSubribeFx],
+  target: [api.getAllMessagesQuery.start, connectSocketFx],
 })
 
 sample({
   clock: currentRoute.closed,
-  target: channelUnsubribeFx,
+  target: disconnectSocketFx,
 })
 
 sample({
@@ -132,7 +134,7 @@ sample({
 })
 
 sample({
-  clock: newMessageDelivered,
+  clock: messageReceived,
   source: { message: $newMessage, messages: $messages },
   fn: ({ message, messages }) => {
     if (message !== null) return messages.concat(message)
@@ -155,8 +157,5 @@ reset({
     $messageError,
     $user,
     $newMessage,
-    $messageFormDisabled,
-    $messageFormValid,
-    $usernameFormValid,
   ],
 })

@@ -1,4 +1,5 @@
 import { createMutation, createQuery } from '@farfetched/core'
+import { createStore } from 'effector'
 import { Array, Record, Static, String } from 'runtypes'
 import { supabase } from './config'
 
@@ -30,3 +31,5 @@ export const sendMessageMutation = createMutation({
     return data
   },
 })
+
+export const $messagesSocket = createStore(supabase.channel('chat-channel'))
